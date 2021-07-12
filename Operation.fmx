@@ -1,0 +1,127 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  BorderStyle = ToolWindow
+  Caption = 'Tool'
+  ClientHeight = 63
+  ClientWidth = 428
+  Position = MainFormCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object ComboBox1: TComboBox
+    Position.X = 8.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    OnChange = ComboBox1Change
+    object ListBoxItem1: TListBoxItem
+      Position.X = 5000.000000000000000000
+      Position.Y = 5000.000000000000000000
+      TabOrder = 0
+      Text = 'Xor'
+    end
+    object ListBoxItem2: TListBoxItem
+      Position.X = 5000.000000000000000000
+      Position.Y = 5000.000000000000000000
+      TabOrder = 1
+      Text = 'Or'
+    end
+    object ListBoxItem3: TListBoxItem
+      Position.X = 5000.000000000000000000
+      Position.Y = 5000.000000000000000000
+      TabOrder = 2
+      Text = 'And'
+    end
+    object ListBoxItem4: TListBoxItem
+      Position.X = 5000.000000000000000000
+      Position.Y = 5000.000000000000000000
+      TabOrder = 3
+      Text = 'Neg'
+    end
+    object ListBoxItem5: TListBoxItem
+      Position.X = 5000.000000000000000000
+      Position.Y = 5000.000000000000000000
+      TabOrder = 4
+      Text = 'Add'
+    end
+    object ListBoxItem6: TListBoxItem
+      Position.X = 5000.000000000000000000
+      Position.Y = 5000.000000000000000000
+      TabOrder = 13
+      Text = 'Sub'
+    end
+    object ListBoxItem11: TListBoxItem
+      TabOrder = 14
+      Text = 'SHL'
+    end
+    object ListBoxItem12: TListBoxItem
+      TabOrder = 15
+      Text = 'SHR'
+    end
+  end
+  object Edit1: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 4
+    MaxLength = 2
+    TextSettings.HorzAlign = Center
+    Position.X = 120.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 49.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    CharCase = ecUpperCase
+    OnChange = Edit1Change
+    OnKeyDown = Edit1KeyDown
+  end
+  object ComboBox2: TComboBox
+    Position.X = 176.000000000000000000
+    Position.Y = 24.000000000000000000
+    TabOrder = 5
+    OnChange = ComboBox2Change
+    object ListBoxItem7: TListBoxItem
+      Size.Width = 19.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Cell'
+    end
+    object ListBoxItem8: TListBoxItem
+      TabOrder = 1
+      Text = 'Line'
+    end
+    object ListBoxItem9: TListBoxItem
+      TabOrder = 2
+      Text = 'Column'
+    end
+    object ListBoxItem10: TListBoxItem
+      TabOrder = 3
+      Text = 'All'
+    end
+  end
+  object Button1: TButton
+    Position.X = 296.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 49.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Text = 'Apply'
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Position.X = 352.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 65.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    Text = 'Cancel'
+    OnClick = Button2Click
+  end
+end
