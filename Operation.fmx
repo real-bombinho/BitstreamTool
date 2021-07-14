@@ -3,7 +3,7 @@ object Form3: TForm3
   Top = 0
   BorderStyle = ToolWindow
   Caption = 'Tool'
-  ClientHeight = 63
+  ClientHeight = 117
   ClientWidth = 428
   Position = MainFormCenter
   FormFactor.Width = 320
@@ -42,7 +42,7 @@ object Form3: TForm3
       Position.X = 5000.000000000000000000
       Position.Y = 5000.000000000000000000
       TabOrder = 3
-      Text = 'Neg'
+      Text = 'Not'
     end
     object ListBoxItem5: TListBoxItem
       Position.X = 5000.000000000000000000
@@ -123,5 +123,71 @@ object Form3: TForm3
     TabOrder = 7
     Text = 'Cancel'
     OnClick = Button2Click
+  end
+  object Edit2: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 9
+    TextSettings.HorzAlign = Center
+    Position.X = 128.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 145.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Edit3: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 8
+    TextSettings.HorzAlign = Center
+    Position.X = 280.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 137.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object ComboBox3: TComboBox
+    ItemIndex = 0
+    Position.X = 8.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 97.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 10
+    OnChange = ComboBox3Change
+    object ListBoxItem13: TListBoxItem
+      IsSelected = True
+      Size.Width = 19.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Uint8'
+    end
+    object ListBoxItem14: TListBoxItem
+      TabOrder = 1
+      Text = 'UInt16'
+    end
+    object ListBoxItem17: TListBoxItem
+      TabOrder = 5
+      Text = 'UInt32'
+    end
+    object ListBoxItem20: TListBoxItem
+      TabOrder = 3
+      Text = 'UInt64'
+    end
+    object ListBoxItem15: TListBoxItem
+      TabOrder = 2
+      Text = 'Single'
+    end
+    object ListBoxItem16: TListBoxItem
+      TabOrder = 4
+      Text = 'Int16'
+    end
+    object ListBoxItem18: TListBoxItem
+      TabOrder = 6
+      Text = 'Int32'
+    end
+    object ListBoxItem19: TListBoxItem
+      TabOrder = 7
+      Text = 'Int64'
+    end
   end
 end

@@ -35,12 +35,14 @@ type
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
+    Button2: TButton;
     procedure MenuItem1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid1CellClick(const Column: TColumn; const Row: Integer);
     procedure Button1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
 
 
   private
@@ -93,6 +95,16 @@ begin
       end;
   memo1.Text := s;
   Edit2.Text := intToStr(n);
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  if memo1.Lines.Count > 6 then
+    memo1.Lines.Clear;
+  if Lines[FCurrentLine].CRC16MB = 0 then ;
+    memo1.Lines.Add(intToHex(Lines[FCurrentLine].CRCValue, 4));
+  memo1.Lines.Add(intToHex(Lines[FCurrentLine].CC2400CRC, 4));
+
 end;
 
 procedure TForm1.calculate;
@@ -152,6 +164,7 @@ var
   pf: TPointF;
   i: integer;
   cl: TColumn;
+  l:TLine;
 begin
   // Do not use the grids PopupMenu property, it seems it
   // prevents this event handler completely.
@@ -173,7 +186,10 @@ begin
     end;
 
     pf := ClientToScreen(TPointF.Create(X, Y));
-    Form3.ShowModal;
+    if high(Lines) > fCurrentLine then
+      Form3.ShowModal(Lines[fCurrentLine], fCurrentColumn)
+    else
+      Form3.ShowModal(nil);
     if Form3.Operation <> TCalculation.cNothing then
        Calculate;
   end;
