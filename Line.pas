@@ -262,18 +262,21 @@ begin
   FText := Value;
     FTime := sl[0];
   end;
+  i := 2;
+  while (i < sl.Count) and (pos('RSSI:',sl[i]) = 0)  do
+    inc(i);
+  if i < (sl.Count - 1) then
+  begin
+    FRSSI := strtoint('$' + sl[i + 1]);
+    FOffset  := strtoint('$' + sl[i + 3]);
+  end;
   if sl.Count > 49 then
   begin
-    setLength(FBytes, 48);
-    for i := 2 to 49 do
+    setLength(FBytes, i - 3);
+    for i := 2 to i - 1 do
       FBytes[i - 2] := strtoint('$' + sl[i]);
   end;
-  if sl.Count = 54 then
-  begin
-    FRSSI := strtoint('$' + sl[51]);
-    FOffset  := strtoint('$' + sl[53]);
-  end
-  else
+
   sl.Free;
 end;
 
