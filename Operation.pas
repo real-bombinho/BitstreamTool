@@ -52,6 +52,8 @@ type
     procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
   private
     { Private declarations }
     FOperation: TCalculation;
@@ -125,6 +127,12 @@ begin
   FOperation := TCalculation.cNothing;
 end;
 
+procedure TForm3.FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+  Shift: TShiftState);
+begin
+if (ord(Key)=27) then close;
+end;
+
 procedure TForm3.FormShow(Sender: TObject);
 begin
   FOperation := TCalculation.cNothing;
@@ -155,12 +163,12 @@ var ba: array[0..7] of byte;
 begin
   if FLine <> nil then
   begin
-    if FCol < (FLine.ValueCount - 9) then
+    if FCol < (FLine.ValueCount - 8) then
       for i := 0 to 7 do
         ba[i] := byte(FLine.ValueAsByte[FCol + i])
     else
       for i := FCol to FLine.ValueCount - 1 do
-        ba[i] := FLine.ValueAsByte[i];
+        ba[i - FCol] := FLine.ValueAsByte[i];
     i := FLine.ValueCount - FCol;
     case ComboBox3.ItemIndex of
       0: begin
@@ -225,7 +233,7 @@ begin
            if i > 3 then
            begin
              Edit2.Text := inttostr(n64);
-             Edit3.Text := '0x' + intToHex(n64, 17);;
+             Edit3.Text := '0x' + intToHex(n64, 16);;
            end
            else
              setZero;
