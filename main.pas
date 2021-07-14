@@ -43,6 +43,10 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure StringGrid1DrawColumnCell(Sender: TObject; const Canvas: TCanvas;
+      const Column: TColumn; const Bounds: TRectF; const Row: Integer;
+      const Value: TValue; const State: TGridDrawStates);
+    procedure FormResize(Sender: TObject);
 
 
   private
@@ -78,6 +82,8 @@ var
 implementation
 
 {$R *.fmx}
+
+{OnDrawColumnCell event}
 
 procedure TForm1.Button1Click(Sender: TObject);
 var i, n : integer;
@@ -156,6 +162,20 @@ begin
     StringGrid1.AddObject(GridColumns[i]);
   end;
   StringGrid1.OnMouseDown := StringGrid1MouseDown;
+end;
+
+procedure TForm1.FormResize(Sender: TObject);
+var p: single;
+begin
+  Layout1.Height := ClientHeight;
+  p := ClientHeight - 116 + MenuBar1.Height;
+  Label1.Position.Y := p;
+  Edit1.Position.Y := p;
+  Button1.Position.Y := p;
+  Edit2.Position.Y := p;
+  Memo1.Position.Y := p;
+  Button2.Position.Y := p + 40;
+  StringGrid1.Height := p - 40;
 end;
 
 procedure TForm1.StringGrid1MouseDown(Sender: TObject; Button: TMouseButton;
@@ -343,6 +363,27 @@ begin
       break;
     end;
   Edit2.Text := '';
+end;
+
+procedure TForm1.StringGrid1DrawColumnCell(Sender: TObject;
+  const Canvas: TCanvas; const Column: TColumn; const Bounds: TRectF;
+  const Row: Integer; const Value: TValue; const State: TGridDrawStates);
+var
+  RowColor : TBrush;
+begin
+
+  RowColor := TBrush.Create(TBrushKind.Solid, TAlphaColors.Alpha);
+
+{you can check for values and then set the color you want}
+  if Value.ToString = '00' then
+    RowColor.Color := TAlphaColors.Mediumspringgreen
+  else
+    RowColor.Color := TAlphaColors.White;
+  Canvas.FillRect(Bounds, 0, 0, [], 1, RowColor);
+
+  { perform default drawing }
+
+  Column.DefaultDrawCell(Canvas, Bounds, Row, Value, State);
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);

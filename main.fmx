@@ -8,6 +8,7 @@ object Form1: TForm1
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
+  OnResize = FormResize
   DesignerMasterStyle = 0
   object Layout1: TLayout
     Align = Top
@@ -24,9 +25,10 @@ object Form1: TForm1
       Size.Height = 441.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
+      OnDrawColumnCell = StringGrid1DrawColumnCell
       OnCellClick = StringGrid1CellClick
-      Viewport.Width = 1271.000000000000000000
-      Viewport.Height = 441.000000000000000000
+      Viewport.Width = 1251.000000000000000000
+      Viewport.Height = 416.000000000000000000
       object StringColumn1: TStringColumn
         Size.Width = 25.000000000000000000
       end
@@ -91,8 +93,8 @@ object Form1: TForm1
       Size.Height = 81.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 6
-      Viewport.Width = 137.000000000000000000
-      Viewport.Height = 81.000000000000000000
+      Viewport.Width = 133.000000000000000000
+      Viewport.Height = 77.000000000000000000
     end
     object Button2: TButton
       Position.X = 184.000000000000000000
