@@ -48,6 +48,8 @@ TLine = class
     function CRC16MB: integer;
     function CC2400CRC: UInt16;
     function findCC2400CRC: TCRCResult;
+    function find(Value: byte): integer; overload;
+    function find(Value: single): integer; overload;
 
   end;
 
@@ -193,6 +195,35 @@ begin
   else
     exit;
   result := true;
+end;
+
+function TLine.find(Value: byte): integer;
+var i: integer;
+begin
+  result := 0;
+  for i := 0 to High(FBytes) do
+    if FBytes[i] = Value then
+    begin
+      result := i;
+      exit;
+    end;
+end;
+
+function TLine.find(Value: single): integer;
+var i: integer;
+    ba: array[0..3] of byte;
+    s: single absolute ba;
+begin
+  result := 0;
+  for i := 0 to High(FBytes) - 3 do
+  begin
+    move(FBytes[i], ba[0], 4);
+    if (s < (Value + 0.01)) and (s > (Value - 0.01)) and (s = s) then
+    begin
+      result := i;
+      exit;
+    end;
+  end;
 end;
 
 function TLine.findCC2400CRC: TCRCResult;

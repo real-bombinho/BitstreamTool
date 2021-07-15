@@ -179,7 +179,7 @@ begin
         if i > 1 then
         begin
           Edit2.Text := inttostr(UInt16(n16));
-          Edit3.Text := '0x' + intToHex(n16, 4);
+          Edit3.Text := '0x' + intToHex(n16);
         end
         else
           setZero;
@@ -212,10 +212,10 @@ begin
              setZero;
          end;
       5: begin
-           if i > 3 then
+           if i > 1 then
            begin
              Edit2.Text := inttostr(n16);
-             Edit3.Text := '0x' + intToHex(n16, 4);;
+             Edit3.Text := '0x' + intToHex(n16);
            end
            else
              setZero;
@@ -224,16 +224,16 @@ begin
            if i > 3 then
            begin
              Edit2.Text := inttostr(n32);
-             Edit3.Text := '0x' + intToHex(n32, 8);;
+             Edit3.Text := '0x' + intToHex(n32, 8);
            end
            else
              setZero;
          end;
       7: begin
-           if i > 3 then
+           if i > 7 then
            begin
              Edit2.Text := inttostr(n64);
-             Edit3.Text := '0x' + intToHex(n64, 16);;
+             Edit3.Text := '0x' + intToHex(n64, 16);
            end
            else
              setZero;

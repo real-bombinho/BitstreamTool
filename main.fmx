@@ -24,6 +24,7 @@ object Form1: TForm1
       Size.Width = 1271.000000000000000000
       Size.Height = 441.000000000000000000
       Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
       TabOrder = 0
       OnDrawColumnCell = StringGrid1DrawColumnCell
       OnCellClick = StringGrid1CellClick
@@ -89,19 +90,94 @@ object Form1: TForm1
       ReadOnly = True
       Position.X = 392.000000000000000000
       Position.Y = 480.000000000000000000
-      Size.Width = 137.000000000000000000
+      Size.Width = 153.000000000000000000
       Size.Height = 81.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 6
-      Viewport.Width = 133.000000000000000000
+      Viewport.Width = 149.000000000000000000
       Viewport.Height = 77.000000000000000000
     end
     object Button2: TButton
+      Hint = 'CRC16 Modbus + CC2400 CRC'
       Position.X = 184.000000000000000000
       Position.Y = 520.000000000000000000
       TabOrder = 7
       Text = 'CRC16'
       OnClick = Button2Click
+    end
+    object GroupBox1: TGroupBox
+      Position.X = 592.000000000000000000
+      Position.Y = 472.000000000000000000
+      Size.Width = 233.000000000000000000
+      Size.Height = 81.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Find'
+      TabOrder = 8
+      object Edit3: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 0
+        FilterChar = #39'0123456789.'#39
+        Position.X = 8.000000000000000000
+        Position.Y = 24.000000000000000000
+      end
+      object ComboBox1: TComboBox
+        Items.Strings = (
+          'Single'
+          'Byte ')
+        ItemIndex = 0
+        Position.X = 8.000000000000000000
+        Position.Y = 48.000000000000000000
+        TabOrder = 1
+      end
+      object Button3: TButton
+        Position.X = 128.000000000000000000
+        Position.Y = 24.000000000000000000
+        TabOrder = 2
+        Text = 'Search'
+        OnClick = Button3Click
+      end
+    end
+    object GroupBox2: TGroupBox
+      Position.X = 840.000000000000000000
+      Position.Y = 472.000000000000000000
+      Size.Width = 161.000000000000000000
+      Size.Height = 81.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Colouring'
+      TabOrder = 9
+      object Edit4: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 0
+        MaxLength = 2
+        FilterChar = '0123456789ABCDEF'
+        Text = '00'
+        TextSettings.HorzAlign = Center
+        Position.X = 7.000000000000000000
+        Position.Y = 22.000000000000000000
+        Size.Width = 49.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        CharCase = ecUpperCase
+      end
+      object CheckBox1: TCheckBox
+        Position.X = 7.000000000000000000
+        Position.Y = 49.000000000000000000
+        Size.Width = 81.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'highlight'
+        OnChange = CheckBox1Change
+      end
+      object ComboColorBox1: TComboColorBox
+        Color = claMediumspringgreen
+        Position.X = 88.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+      end
     end
   end
   object OpenDialog1: TOpenDialog
@@ -117,8 +193,8 @@ object Form1: TForm1
     Top = 528
   end
   object PopupMenu1: TPopupMenu
-    Left = 640
-    Top = 512
+    Left = 304
+    Top = 520
     object MenuItem3: TMenuItem
       Text = 'XOR'
       object MenuItem4: TMenuItem

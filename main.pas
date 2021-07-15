@@ -8,7 +8,7 @@ uses
   FMX.Grid.Style, FMX.Grid, FMX.Menus, FMX.Controls.Presentation, FMX.ScrollBox,
   FMX.Layouts, FMX.StdCtrls, FMX.Edit, FMX.Memo,
   System.StrUtils,
-  Line, Operation;
+  Line, Operation, FMX.ListBox, FMX.Colors;
 
 const GridColumnCount = 48;
 
@@ -36,6 +36,14 @@ type
     MenuItem6: TMenuItem;
     MenuItem7: TMenuItem;
     Button2: TButton;
+    GroupBox1: TGroupBox;
+    Edit3: TEdit;
+    ComboBox1: TComboBox;
+    Button3: TButton;
+    Edit4: TEdit;
+    CheckBox1: TCheckBox;
+    GroupBox2: TGroupBox;
+    ComboColorBox1: TComboColorBox;
     procedure MenuItem1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure StringGrid1CellClick(const Column: TColumn; const Row: Integer);
@@ -47,6 +55,8 @@ type
       const Column: TColumn; const Bounds: TRectF; const Row: Integer;
       const Value: TValue; const State: TGridDrawStates);
     procedure FormResize(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure CheckBox1Change(Sender: TObject);
 
 
   private
@@ -113,6 +123,31 @@ begin
 
 end;
 
+procedure TForm1.Button3Click(Sender: TObject);
+var i: integer;
+    b: byte;
+    s: single;
+    n: int32 absolute s;
+begin
+  s := strtoFloatDef(edit3.Text, 0);
+  b := strtointDef(Edit3.Text, 0);
+  case ComboBox1.ItemIndex of
+    0: for i := 0 to high(Lines) do
+         if Lines[i].find(s) <> 0 then
+         begin
+           memo1.Lines.Add('Line ' + inttostr(i) + ': 0x' + inttoHex(n));
+           exit;
+         end;
+    1: for i := 0 to high(Lines) do
+         if Lines[i].find(b) <> 0 then
+         begin
+           memo1.Lines.Add('Line '+ inttostr(i) + ': 0x' + inttoHex(b));
+           exit;
+         end;
+  end;
+  memo1.Lines.Add('not found');
+end;
+
 procedure TForm1.calculate;
 begin
     case Form3.Target of
@@ -125,6 +160,11 @@ begin
       TTarget.tgAll:     populateGridColumn(-1, Form3.Value,
                            Form3.Operation);
     end;
+end;
+
+procedure TForm1.CheckBox1Change(Sender: TObject);
+begin
+  StringGrid1.Repaint;
 end;
 
 procedure TForm1.clearLines;
@@ -176,6 +216,8 @@ begin
   Memo1.Position.Y := p;
   Button2.Position.Y := p + 40;
   StringGrid1.Height := p - 40;
+  GroupBox1.Position.Y := p;
+  GroupBox2.Position.Y := p;
 end;
 
 procedure TForm1.StringGrid1MouseDown(Sender: TObject; Button: TMouseButton;
@@ -375,8 +417,8 @@ begin
   RowColor := TBrush.Create(TBrushKind.Solid, TAlphaColors.Alpha);
 
 {you can check for values and then set the color you want}
-  if Value.ToString = '00' then
-    RowColor.Color := TAlphaColors.Mediumspringgreen
+  if (Value.ToString = Edit4.Text) and checkbox1.IsChecked then
+    RowColor.Color := ComboColorBox1.Color
   else
     RowColor.Color := TAlphaColors.White;
   Canvas.FillRect(Bounds, 0, 0, [], 1, RowColor);
